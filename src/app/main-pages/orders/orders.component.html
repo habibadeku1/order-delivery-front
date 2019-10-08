@@ -1,0 +1,39 @@
+<nb-card [nbSpinner]="loading">
+
+
+  <nb-card-header class="main-header">
+      <div *ngIf="userData==='administrator'" class="buttons-div">
+          <a href="/dashboard/#/main-pages/create-order"  shape="semi-round" status="success" class="btn-demo button-pad" nbButton>Create Order</a>
+        <button (click)="refresh()" nbButton shape="semi-round" status="primary" class="btn-demo button-pad">Refresh</button>
+    </div>
+    List of Orders 
+  </nb-card-header>
+
+  <nb-card-body >
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover mouse-over">
+      <thead>
+        <tr>
+          <th>Reference ID</th>
+          <th>Customer Email</th>
+          <th>Order Date</th>
+          <th>Expected Delivery Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="orders?.length != 0">
+          <tr *ngFor="let order of orders">
+              <td>{{ order.referenceId }}</td>
+              <td>{{ order.customerEmail }}</td>
+              <td>{{ order.orderDate | date:'medium' }}</td>
+              <td>{{ order.expectedDeliveryDate | date:'medium' }}</td>
+              <td>{{ order.status }}</td>
+          </tr>
+      </tbody>
+      <tbody *ngIf="orders?.length == 0">
+        <tr>
+          <td colspan="3" class="no-data-available">No data!</td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

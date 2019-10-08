@@ -1,0 +1,37 @@
+<nb-card>
+
+
+    <nb-card-header class="main-header">
+        <div class="buttons-div">
+            <a href="/dashboard/#/main-pages/create-product"  shape="semi-round" status="success" class="btn-demo button-pad" nbButton>Create Product</a>
+          <button (click)="refresh()" nbButton shape="semi-round" status="primary" class="btn-demo button-pad">Refresh</button>
+      </div>
+    List of Products
+  </nb-card-header>
+
+  <nb-card-body>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover mouse-over">
+          <thead>
+        <tr>
+          <th>Reference Id</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Date Created</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="products?.length != 0">
+          <tr *ngFor="let product of products">
+              <td>{{ product.productRefId }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.costPrice }}</td>
+              <td>{{ product.createdAt | date:'medium' }}</td>
+          </tr>
+      </tbody>
+      <tbody *ngIf="products?.length == 0">
+        <tr>
+          <td colspan="3" class="no-data-available">No data!</td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

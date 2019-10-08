@@ -1,0 +1,124 @@
+<!-- <nb-card [nbSpinner]="loading">
+
+
+    <nb-card-header>
+        Order Details
+    </nb-card-header> -->
+
+<!-- <div *ngIf='orderDetails && orderDetails.length>0'>
+
+        <div class="row show-grid">
+            <div><label>{{orderDetails[0].status}}</label></div>
+            <div *ngFor="let item of orderDetails[0].itemizeds" class="col-md-6">
+                <nb-card>
+                    <nb-card-body>
+                        <div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="text" value="{{item.quantity}}" nbInput fullWidth id="quantity" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="salesPrice">Sales Price</label>
+                                <input type="text" value="{{item.salesPrice}}" nbInput fullWidth id="salesPrice"
+                                    disabled>
+                            </div>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div> -->
+
+<div class="modal-header">
+    <span> Order Details : <i>{{ dataId }} </i></span>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <nb-card [nbSpinner]="loading">
+
+            <ng-container *ngIf="orderDetails">
+
+        <ng-container *ngIf="orderDetails.itemData && orderDetails.itemData[0]!=undefined">
+
+                <div class="col-md-12">
+                        <nb-card class="inline-form-card">
+                            <nb-card-header>Order Status</nb-card-header>
+                            <nb-card-body>
+                                <form [formGroup]="firstForm" class="form-inline">
+                                    <label for="presentStatus">Present Status: </label>
+                                    <input type="text" value="**{{orderDetails.otherData.status}}**" nbInput
+                                        class="form-control full-width" id="presentStatus" disabled>
+                                    <!-- <div class="input-group full-width">
+                                                    <div class="input-group-addon">@</div>
+                                                    <input type="text" class="form-control" placeholder="Email">
+                                                </div> -->
+                                                <div *ngIf="userData==='administrator'" class="form-group">
+                                                <select formControlName="status" class="select-css" id="status">
+                                                        <option *ngFor="let status of statuses;" [value]="status.name">
+                                                          {{status.title}}
+                                                        </option>
+                                                      </select>
+                                                    </div>
+                                                    <!-- <div class="form-group">
+                                                            <nb-select formControlName="status" id="status">
+                                                              <nb-option *ngFor="let status of statuses; let i = index" [value]="status.name">
+                                                                {{status.title}}
+                                                              </nb-option>
+                                                            </nb-select>
+                                                          </div> -->
+                                                      <div *ngIf="userData==='administrator'" class="submit-button">
+                                    <button [disabled]="firstForm.invalid" (click)="updateStatus()" type="submit" class="btn btn-primary">Update</button> </div>
+                                </form>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+        <nb-card>
+            <nb-card-header>Order Items</nb-card-header>
+            <nb-card-body>
+                    <div class="row show-grid">
+                <div *ngFor="let item of orderDetails.itemData" class="col-md-6">
+                    <nb-card>
+                        <nb-card-body>
+                            <div>
+                                    <div class="form-group">
+                                            <label for="name">Product Name</label>
+                                            <input type="text" value="{{item.productName}}" nbInput fullWidth id="name"
+                                                disabled>
+                                        </div>
+                                <div class="form-group">
+                                    <label for="quantity">Quantity</label>
+                                    <input type="text" value="{{item.item.quantity}}" nbInput fullWidth id="quantity"
+                                        disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="salesPrice">Sales Price</label>
+                                    <input type="text" value="&#8358;{{item.item.salesPrice}}" nbInput fullWidth id="salesPrice"
+                                        disabled>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+
+
+    </ng-container>
+
+</ng-container>
+
+    </nb-card>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-md btn-primary" (click)="closeModal()">Close</button>
+</div>
+<!-- 
+        <div class="modal-footer">
+            <button class="btn btn-md btn-primary" (click)="closeModal()">Save changes</button>
+        </div> -->
+<!-- 
+    </div>
+</nb-card> -->
